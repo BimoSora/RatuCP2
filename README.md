@@ -1,4 +1,4 @@
-# RatuCP
+# RatuCP2
 The bot generates shareable links in Telegram for videos, photos, documents and can be shared in groups.
 <hr>
 
