@@ -253,7 +253,7 @@ You can use bots without domain and SSL by changing the code below in index.js t
 <code>/sendchat</code> message userID. send to users via bot.</br>
 
 <h2>How to delete files from bot.</h2>
-You can delete files 4 ways.</br>
+You can delete files 3 ways.</br>
 
   ⚫ Delete individual files with file_id.
   
