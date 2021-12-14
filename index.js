@@ -2168,6 +2168,7 @@ bot.on('photo', async(ctx, next) => {
 })
 
 bot.command('stats',async(ctx)=>{
+    await ctx.deleteMessage()
     stats = await saver.getUser().then(async res=>{
         if(ctx.from.id == config.ADMIN || ctx.from.id == config.ADMIN1 || ctx.from.id == config.ADMIN2 || ctx.from.id == config.ADMIN3 || ctx.from.id == config.ADMIN4){
             await ctx.reply(`📊 Total users: <b>${res.length}</b>`,{parse_mode:'HTML'})
