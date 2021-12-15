@@ -9,7 +9,6 @@ Required installation
 4. NodeJS</br>
 5. PM2 <code>npm install -g pm2</code></br>
 6. NPM required. Don't forget to install it where package.json is stored in the bot folder</br>
-<code>npm install filsaverobot</code></br>
 <code>npm install dotenv</code></br>
 <code>npm install mongodb</code></br>
 <code>npm install nodemon</code></br>
