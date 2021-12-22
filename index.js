@@ -72,7 +72,7 @@ function messagebotnoaddgroup(ctx){
 }
 
 //BOT START
-bot.start(async(ctx)=>{
+bot.start(async(ctx, next)=>{
     await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
@@ -396,7 +396,13 @@ bot.start(async(ctx)=>{
 })
 
 //TEST BOT
-bot.hears(/ping/i,async(ctx)=>{
+bot.hears(/ping/i,async(ctx, next)=>{
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 1_000);
+    });
+    
     if(ctx.chat.type == 'private') {    
         await saver.checkBan(`${ctx.from.id}`).then(async res => {
             //console.log(res);
@@ -417,14 +423,26 @@ bot.hears(/ping/i,async(ctx)=>{
             }
         })
     }
+    return next();
 })
 
-bot.action('PONG',async(ctx)=>{
+bot.action('PONG',async(ctx, next)=>{
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 1_000);
+    });
     await ctx.deleteMessage()
+    return next();
 })
 
 //GROUP COMMAND
-bot.command('reload',async(ctx)=>{
+bot.command('reload',async(ctx, next)=>{
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 1_000);
+    });
 
     var botStatus = await bot.telegram.getChatMember(ctx.chat.id, ctx.botInfo.id)
     var memberstatus = await bot.telegram.getChatMember(ctx.chat.id, ctx.from.id)
@@ -444,9 +462,16 @@ bot.command('reload',async(ctx)=>{
             await saver.saveGroup(group)
         }
     }
+    return next();
 })
 
-bot.command('kick',async(ctx)=>{
+bot.command('kick',async(ctx, next)=>{
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 1_000);
+    });
+    
     groupDetails = await saver.getGroup().then(async res=>{
         n = res.length
         groupId = []
@@ -503,9 +528,16 @@ bot.command('kick',async(ctx)=>{
         }
         kick()
     })
+    return next();
 })
 
 bot.command('ban',async(ctx)=>{
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 1_000);
+    });
+    
     groupDetails = await saver.getGroup().then(async res => {
         n = res.length
         groupId = []
@@ -667,9 +699,16 @@ bot.command('ban',async(ctx)=>{
         }
         ban()
     })
+    return (next);
 })
 
-bot.command('unban',async(ctx)=>{
+bot.command('unban',async(ctx, next)=>{
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 1_000);
+    });
+    
     groupDetails = await saver.getGroup().then(async res => {
         n = res.length
         groupId = []
@@ -750,9 +789,16 @@ bot.command('unban',async(ctx)=>{
         }
         unban()
     })
+    return next();
 })
 
-bot.command('pin',async(ctx)=>{
+bot.command('pin',async(ctx, next)=>{
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 1_000);
+    });
+    
     groupDetails = await saver.getGroup().then(async res =>{
         n = res.length
         groupId = []
@@ -797,9 +843,16 @@ bot.command('pin',async(ctx)=>{
         }
         pin()
     })
+    return next();
 })
 
-bot.command('unpin',async(ctx)=>{
+bot.command('unpin',async(ctx, next)=>{
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 1_000);
+    });
+    
     groupDetails = await saver.getGroup().then( async res=>{
         n = res.length
         groupId = []
@@ -838,9 +891,16 @@ bot.command('unpin',async(ctx)=>{
         }
         unpin()
     })
+    return next();
 })
 
-bot.command('send',async(ctx)=>{
+bot.command('send',async(ctx, next)=>{
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 1_000);
+    });
+    
     groupDetails = await saver.getGroup().then(async res =>{
         n = res.length
         groupId = []
@@ -897,11 +957,12 @@ bot.command('send',async(ctx)=>{
         }
         send()
     })
+    return next();
 })
 //END
 
 //check account
-bot.command('getid',async(ctx)=>{
+bot.command('getid',async(ctx, next)=>{
     await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
@@ -936,7 +997,12 @@ bot.command('getid',async(ctx)=>{
 })
 
 //remove files with file_id
-bot.command('rem', async(ctx) => {
+bot.command('rem', async(ctx, next) => {
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 1_000);
+    });
 
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
@@ -951,11 +1017,17 @@ bot.command('rem', async(ctx) => {
             await ctx.reply('❌ 1 media deleted successfully')
         }
     }
+    return next();
 })
 
 //remove whole collection(remove all files)
-bot.command('clear', async(ctx)=>{
-
+bot.command('clear', async(ctx, next)=>{
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 1_000);
+    });
+    
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == config.ADMIN || ctx.from.id == config.ADMIN1 || ctx.from.id == config.ADMIN2 || ctx.from.id == config.ADMIN3 || ctx.from.id == config.ADMIN4){
             await ctx.deleteMessage()
@@ -963,11 +1035,17 @@ bot.command('clear', async(ctx)=>{
             await ctx.reply('❌ All media deleted successfully')
         }
     }
+    return next();
 })
 
 //removing all files sent by a user
-bot.command('remall', async(ctx) => {
-
+bot.command('remall', async(ctx, next) => {
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 1_000);
+    });
+    
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
         let msgArray = msg.split(' ')
@@ -981,9 +1059,16 @@ bot.command('remall', async(ctx) => {
             await ctx.reply('❌ Delete all user media successfully')
         }
     }
+    return next();
 })
 
-bot.command('sendchat',async(ctx)=>{
+bot.command('sendchat',async(ctx, next)=>{
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 1_000);
+    });
+    
     groupDetails = await saver.getGroup().then(async res=>{
         n = res.length
         groupId = []
@@ -1028,10 +1113,16 @@ bot.command('sendchat',async(ctx)=>{
             sendchat()
         }
     })
+    return next();
 })
 
 //broadcasting message to bot users(from last joined to first)
-bot.command('broadcast',async(ctx)=>{
+bot.command('broadcast',async(ctx, next)=>{
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 1_000);
+    });
 
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
@@ -1048,7 +1139,7 @@ bot.command('broadcast',async(ctx)=>{
             //broadcasting
             totalBroadCast = 0
             totalFail = []
-            
+
             //creating function for broadcasting and to know bot user status
             async function broadcast(text) {
                 for (const users of userId) {
@@ -1081,10 +1172,17 @@ bot.command('broadcast',async(ctx)=>{
 
         })
     }
+    return next();
 })
 
 //ban user with user id
-bot.command('banchat', async(ctx) => {
+bot.command('banchat', async(ctx, next) => {
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 1_000);
+    });
+    
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
         let msgArray = msg.split(' ')
@@ -1096,7 +1194,7 @@ bot.command('banchat', async(ctx) => {
         }
 
         if(ctx.chat.type == 'private') {
-            if(ctx.from.id == config.ADMIN|| ctx.from.id == config.ADMIN1 || ctx.from.id == config.ADMIN2){
+            if(ctx.from.id == config.ADMIN || ctx.from.id == config.ADMIN1 || ctx.from.id == config.ADMIN2 || ctx.from.id == config.ADMIN3 || ctx.from.id == config.ADMIN4){
                 await ctx.deleteMessage()
                 await saver.banUser(userId).then(async res => {
                     await ctx.reply('❌ Banned')
@@ -1104,11 +1202,17 @@ bot.command('banchat', async(ctx) => {
             }
         }
     }
-    
+    return (next); 
 })
 
 //unban user with user id
-bot.command('unbanchat', async(ctx) => {
+bot.command('unbanchat', async(ctx, next) => {
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 1_000);
+    });
+    
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
         let msgArray = msg.split(' ')
@@ -1128,6 +1232,7 @@ bot.command('unbanchat', async(ctx) => {
             }
         }
     }
+    return next();
 })
 
 //document files
@@ -2258,7 +2363,13 @@ bot.on('photo', async(ctx, next) => {
     return next();
 })
 
-bot.command('stats',async(ctx)=>{
+bot.command('stats',async(ctx, next)=>{
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 1_000);
+    });
+    
     await ctx.deleteMessage()
     stats = await saver.getUser().then(async res=>{
         if(ctx.from.id == config.ADMIN || ctx.from.id == config.ADMIN1 || ctx.from.id == config.ADMIN2 || ctx.from.id == config.ADMIN3 || ctx.from.id == config.ADMIN4){
@@ -2284,6 +2395,7 @@ bot.command('stats',async(ctx)=>{
         }
         
     })
+    return next();
 })
 
 //nginx config
