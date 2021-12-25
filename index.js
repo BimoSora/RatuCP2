@@ -110,11 +110,6 @@ bot.start(async(ctx, next)=>{
                 try{
                     const res2 = await saver.getFile2(query2)
                 
-                    async function captionFunction2() {
-                        await ctx.reply(`${captionbuild(ctx)}`,{
-                            parse_mode:'HTML'
-                        })
-                    }
                     if(res2.type=='video'){
                         await ctx.deleteMessage()
                         let result = `${res2.uniqueId}`.replace(/-/g, '_');
@@ -123,7 +118,6 @@ bot.start(async(ctx, next)=>{
                         let type2 = type.slice(0,1).toUpperCase() + type.substr(1)
                         
                         if(!res2.caption) {
-                            setTimeout(captionFunction2, 1000)
                             return await ctx.replyWithVideo(res2.file_id,{caption: `#size${res2.file_size} \n#file${result}`,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -143,7 +137,6 @@ bot.start(async(ctx, next)=>{
                                 ]
                             }
                         });
-                            setTimeout(captionFunction2, 1000)
                     }else if(res2.type=='photo'){
                         await ctx.deleteMessage()
                         let result = `${res2.uniqueId}`.replace(/-/g, '_');
@@ -152,7 +145,6 @@ bot.start(async(ctx, next)=>{
                         let type2 = type.slice(0,1).toUpperCase() + type.substr(1)
                         
                         if(!res2.caption) {
-                            setTimeout(captionFunction2, 1000)
                             return await ctx.replyWithPhoto(res2.file_id,{caption: `#size${res2.file_size} \n#file${result}`,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -172,7 +164,6 @@ bot.start(async(ctx, next)=>{
                                 ]
                             }
                         });
-                            setTimeout(captionFunction2, 1000)
                     }else if(res2.type=='document'){
                         await ctx.deleteMessage()
                         let result = `${res2.uniqueId}`.replace(/-/g, '_');
@@ -181,7 +172,6 @@ bot.start(async(ctx, next)=>{
                         let type2 = type.slice(0,1).toUpperCase() + type.substr(1)
                         
                         if(!res2.caption) {
-                            setTimeout(captionFunction2, 1000)
                             return await ctx.replyWithDocument(res2.file_id,{caption: `#size${res2.file_size} \n#file${result}`,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
@@ -201,7 +191,6 @@ bot.start(async(ctx, next)=>{
                                 ]
                             }
                         });
-                            setTimeout(captionFunction2, 1000)
                     }
                 }catch(error){
                     await ctx.deleteMessage()
@@ -264,11 +253,6 @@ bot.start(async(ctx, next)=>{
                             try{
                                 const res2 = await saver.getFile2(query2)
                             
-                                async function captionFunction2() {
-                                    await ctx.reply(`${captionbuild(ctx)}`,{
-                                        parse_mode:'HTML'
-                                    })
-                                }
                                 await saver.checkBan(`${ctx.from.id}`).then(async res => {
                                     //console.log(res);
                                     if(res == true) {
@@ -285,7 +269,6 @@ bot.start(async(ctx, next)=>{
                                             let type2 = type.slice(0,1).toUpperCase() + type.substr(1)
                                             
                                             if(!res2.caption) {
-                                                setTimeout(captionFunction2, 1000)
                                                 return await ctx.replyWithVideo(res2.file_id,{caption: `#size${res2.file_size} \n#file${result}`,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
@@ -305,7 +288,6 @@ bot.start(async(ctx, next)=>{
                                                     ]
                                                 }
                                             });
-                                                setTimeout(captionFunction2, 1000)
                                         }else if(res2.type=='photo'){
                                             await ctx.deleteMessage()
                                             let result = `${res2.uniqueId}`.replace(/-/g, '_');
@@ -314,7 +296,6 @@ bot.start(async(ctx, next)=>{
                                             let type2 = type.slice(0,1).toUpperCase() + type.substr(1)
                                             
                                             if(!res2.caption) {
-                                                setTimeout(captionFunction2, 1000)
                                                 return await ctx.replyWithPhoto(res2.file_id,{caption: `#size${res2.file_size} \n#file${result}`,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
@@ -334,7 +315,6 @@ bot.start(async(ctx, next)=>{
                                                     ]
                                                 }
                                             });
-                                                setTimeout(captionFunction2, 1000)
                                         }else if(res2.type=='document'){
                                             await ctx.deleteMessage()
                                             let result = `${res2.uniqueId}`.replace(/-/g, '_');
@@ -343,7 +323,6 @@ bot.start(async(ctx, next)=>{
                                             let type2 = type.slice(0,1).toUpperCase() + type.substr(1)
                                             
                                             if(!res2.caption) {
-                                                setTimeout(captionFunction2, 1000)
                                                 return await ctx.replyWithDocument(res2.file_id,{caption: `#size${res2.file_size} \n#file${result}`,
                                                     parse_mode:'HTML',
                                                     disable_web_page_preview: true,
@@ -363,7 +342,6 @@ bot.start(async(ctx, next)=>{
                                                     ]
                                                 }
                                             });
-                                                setTimeout(captionFunction2, 1000)
                                         }
                                     }
                                 })
