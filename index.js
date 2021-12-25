@@ -55,9 +55,6 @@ function username(ctx){
 function fromid(ctx){
     return ctx.from.id ? `[${ctx.from.id}]` : "";
 }
-function captionbuild(ctx){
-    return `${config.CAPTIONLINK}`;
-}
 function welcomejoin(ctx){
     return `${config.WELCOMEJOINBOT}\n\n${today(ctx)}`;
 }

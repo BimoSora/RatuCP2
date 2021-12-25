@@ -20,9 +20,6 @@ module.exports = {
         //Create private channel and enter channel id to monitor files and get user and file data.
     LOG_CHANNEL: '',
 
-        //Caption when the media link sent is pressed.
-    CAPTIONLINK: '',
-
         //Enter a message before the user joins.
     WELCOMEJOINBOT: '',
 
