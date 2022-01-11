@@ -1,6 +1,6 @@
 require('dotenv').config();
 const { Telegraf } = require('telegraf');
-const fileType = require('file-type');
+const FileType = require('file-type');
 const got = require('got');
 const config = require('./config.js');
 const bot = new Telegraf(config.TOKEN);
@@ -1123,19 +1123,42 @@ bot.command('unbanchat', async(ctx) => {
 })
 
 bot.command('url', async ctx => {
-    const url = ctx.message.text.replace('/url', '').trim();
-    if (!url.length) return ctx.reply('No valid url found ')
-    const buffer = await got(url).buffer()
-    const { mime } = await fileType.fromBuffer(buffer)
-    if (mime.startsWith('video')) {
-        await ctx.replyWithVideo({
-            source: buffer,
-            filename: 'video.mp4'
-        }, {
-    })
-     await ctx.reply('Upload successful')
-    } else {
-        ctx.reply('This is not a video ')
+    if(ctx.from.id == Number(process.env.ADMIN) || ctx.from.id == Number(process.env.ADMIN1) || ctx.from.id == Number(process.env.ADMIN2) || ctx.from.id == Number(process.env.ADMIN3) || ctx.from.id == Number(process.env.ADMIN4)){
+        const url = ctx.message.text.replace('/url', '').trim();
+        if (!url.length) return ctx.reply('No valid url found ')
+        const buffer = await got(url).buffer()
+        const { mime } = await FileType.fromBuffer(buffer)
+        
+        let filename2 = ``;
+        try {
+            filename2 = new URL(url).pathname.split('/').pop();
+        } catch (e) {
+            console.error(e);
+        }
+        if (mime.startsWith('video')) {
+            await ctx.replyWithVideo({
+                source: buffer,
+                filename: `${filename2}`
+            }, {
+            })
+            await ctx.reply('Upload successful')
+        } else if (mime.startsWith('image')) {
+            await ctx.replyWithDocument({
+                source: buffer,
+                filename: `${filename2}`
+            }, {
+            })
+            await ctx.reply('Upload successful')
+        } else if (mime.startsWith('document')) {
+            await ctx.replyWithDocument({
+                source: buffer,
+                filename: `${filename2}`
+            }, {
+            })
+            await ctx.reply('Upload successful')
+        } else {
+            await ctx.reply('Type not found')
+        }
     }
 })
 
