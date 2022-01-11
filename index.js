@@ -1123,7 +1123,7 @@ bot.command('unbanchat', async(ctx) => {
 })
 
 bot.command('url', async ctx => {
-    if(ctx.from.id == Number(process.env.ADMIN) || ctx.from.id == Number(process.env.ADMIN1) || ctx.from.id == Number(process.env.ADMIN2) || ctx.from.id == Number(process.env.ADMIN3) || ctx.from.id == Number(process.env.ADMIN4)){
+    if(ctx.from.id == Number(config.ADMIN) || ctx.from.id == Number(config.ADMIN1) || ctx.from.id == Number(config.ADMIN2) || ctx.from.id == Number(config.ADMIN3) || ctx.from.id == Number(config.ADMIN4)){
         const url = ctx.message.text.replace('/url', '').trim();
         if (!url.length) return ctx.reply('No valid url found ')
         const buffer = await got(url).buffer()
