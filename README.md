@@ -14,7 +14,6 @@ Required installation
 <code>npm install nodemon&2.0.15</code></br>
 <code>npm install telegraf@4.5.2</code></br>
 <code>npm install pm2@5.1.2</code></br>
-<code>npm install file-type@16.5.3</code></br>
 <code>npm install got@11.8.3</code></br>
 <hr>
 
