@@ -191,7 +191,7 @@ bot.start(async(ctx)=>{
             }
         }else{
             try {
-                var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
+                
                 var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
                 //console.log(member);
                 if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
@@ -1130,7 +1130,7 @@ bot.on('document', async(ctx, next) => {
     });
 
     if(ctx.chat.type == 'private') {
-        var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
+        
         var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
         //console.log(member);
         if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
@@ -1231,7 +1231,7 @@ bot.on('video', async(ctx, next) => {
     });
 
     if(ctx.chat.type == 'private') {
-        var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
+        
         var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
         //console.log(member);
         if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
@@ -1332,7 +1332,7 @@ bot.on('photo', async(ctx, next) => {
     });
 
     if(ctx.chat.type == 'private') {
-        var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
+        
         var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
         //console.log(member);
         if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
