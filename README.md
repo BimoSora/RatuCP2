@@ -81,11 +81,7 @@ Installation is in the config.js file</br>
 <code>TOKEN</code> - Get Bot Token from Bot father.</br>
 <code>ADMIN</code> - Your Account ID (if you can't find it using a bot like @getmyid_bot). <b>If there is an additional ADMIN1 and ADMIN2, write it according to the example in the code and just add the numbers behind it</b></br>
 
-    ADMIN: '',
-    ADMIN1: '',
-    ADMIN2: '',
-    ADMIN3: '',
-    ADMIN4: '',
+    ADMIN: 111 222 333
 
 <code>BOTUSERNAME</code> - Your bot username without the '@' and must be lowercase.</br>
 <code>DB_URL</code> - Create an account at https://www.mongodb.com/cloud/atlas , database name - RatuMediaFile ,collection name - RatuFileBackup.Click Connect and select 'Connect your app'.copy the link and replace "<password >" with the password of the user who has access to the DB and replace "myFirstDatabase" for "QueenMediaFile". If you want to change the database name you want, it's in the config folder.</br>
@@ -191,11 +187,7 @@ Installation is in the config.js file</br>
 <code>TOKEN</code> - Get Bot Token from Bot father.</br>
 <code>ADMIN</code> - Your Account ID (if you can't find it using a bot like @getmyid_bot). <b>If there is an additional ADMIN1 and ADMIN2, write it according to the example in the code and just add the numbers behind it</b></br>
 
-    ADMIN: '',
-    ADMIN1: '',
-    ADMIN2: '',
-    ADMIN3: '',
-    ADMIN4: '',
+    ADMIN: 111 222 333
 
 <code>BOTUSERNAME</code> - Your bot username without the '@' and must be lowercase.</br>
 <code>DB_URL</code> - Create an account at https://www.mongodb.com/cloud/atlas , database name - RatuMediaFile ,collection name - RatuFileBackup.Click Connect and select 'Connect your app'.copy the link and replace "<password >" with the password of the user who has access to the DB and replace "myFirstDatabase" for "QueenMediaFile". If you want to change the database name you want, it's in the config folder.</br>

@@ -83,7 +83,10 @@ bot.start(async(ctx)=>{
             first_name:ctx.from.first_name,
             userId:ctx.from.id
         }
-        if(ctx.from.id == Number(config.ADMIN) || ctx.from.id == Number(config.ADMIN1) || ctx.from.id == Number(config.ADMIN2) || ctx.from.id == Number(config.ADMIN3) || ctx.from.id == Number(config.ADMIN4)){
+        let str = config.ADMIN;
+        let result = str.includes(ctx.from.id);
+
+        if(result == true){
             //welcoming message on /start and ifthere is a query available we can send files
             if(length == 1){
                 await ctx.deleteMessage(ctx.message.message_id)
@@ -926,7 +929,10 @@ bot.command('rem', async(ctx) => {
         let text2 = msgArray.join(' ')
         let text = `${text2}`.replace(/_/g, '-');
         console.log(text);
-        if(ctx.from.id == Number(config.ADMIN) || ctx.from.id == Number(config.ADMIN1) || ctx.from.id == Number(config.ADMIN2) || ctx.from.id == Number(config.ADMIN3) || ctx.from.id == Number(config.ADMIN4)){
+        let str = config.ADMIN;
+        let result = str.includes(ctx.from.id);
+
+        if(result == true){
             await ctx.deleteMessage(ctx.message.message_id)
             saver.removeFile(text)
             await ctx.reply('❌ 1 media deleted successfully')
@@ -939,7 +945,10 @@ bot.command('rem', async(ctx) => {
 bot.command('clear', async(ctx)=>{
     
     if(ctx.chat.type == 'private') {
-        if(ctx.from.id == Number(config.ADMIN) || ctx.from.id == Number(config.ADMIN1) || ctx.from.id == Number(config.ADMIN2) || ctx.from.id == Number(config.ADMIN3) || ctx.from.id == Number(config.ADMIN4)){
+        let str = config.ADMIN;
+        let result = str.includes(ctx.from.id);
+
+        if(result == true){
             await ctx.deleteMessage(ctx.message.message_id)
             await saver.deleteCollection()
             await ctx.reply('❌ All media deleted successfully')
@@ -958,7 +967,10 @@ bot.command('remall', async(ctx) => {
         let text = msgArray.join(' ')
         //console.log(text);
         let id = parseInt(text)
-        if(ctx.from.id == Number(config.ADMIN) || ctx.from.id == Number(config.ADMIN1) || ctx.from.id == Number(config.ADMIN2) || ctx.from.id == Number(config.ADMIN3) || ctx.from.id == Number(config.ADMIN4)){
+        let str = config.ADMIN;
+        let result = str.includes(ctx.from.id);
+
+        if(result == true){
             await ctx.deleteMessage(ctx.message.message_id)
             await saver.removeUserFile(id)
             await ctx.reply('❌ Delete all user media successfully')
@@ -996,7 +1008,10 @@ bot.command('sendchat',async(ctx)=>{
         }
 
         if(ctx.chat.type == 'private') {
-            if(ctx.from.id == Number(config.ADMIN) || ctx.from.id == Number(config.ADMIN1) || ctx.from.id == Number(config.ADMIN2) || ctx.from.id == Number(config.ADMIN3) || ctx.from.id == Number(config.ADMIN4)){
+            let str = config.ADMIN;
+        let result = str.includes(ctx.from.id);
+
+        if(result == true){
                 await ctx.deleteMessage(ctx.message.message_id)
                 const str = ctx.message.text;
                 const words = str.split(/ +/g);
@@ -1055,7 +1070,10 @@ bot.command('broadcast',async(ctx)=>{
                 })
 
             }
-            if(ctx.from.id == Number(config.ADMIN) || ctx.from.id == Number(config.ADMIN1) || ctx.from.id == Number(config.ADMIN2) || ctx.from.id == Number(config.ADMIN3) || ctx.from.id == Number(config.ADMIN4)){
+            let str = config.ADMIN;
+        let result = str.includes(ctx.from.id);
+
+        if(result == true){
                 await ctx.deleteMessage(ctx.message.message_id)
                 broadcast(text)
                 await ctx.reply('Broadcast starts (Message is broadcast from last joined to first).')
@@ -1084,7 +1102,10 @@ bot.command('banchat', async(ctx) => {
         }
 
         if(ctx.chat.type == 'private') {
-            if(ctx.from.id == Number(config.ADMIN) || ctx.from.id == Number(config.ADMIN1) || ctx.from.id == Number(config.ADMIN2) || ctx.from.id == Number(config.ADMIN3) || ctx.from.id == Number(config.ADMIN4)){
+            let str = config.ADMIN;
+        let result = str.includes(ctx.from.id);
+
+        if(result == true){
                 await ctx.deleteMessage(ctx.message.message_id)
                 await saver.banUser(userId).then(async res => {
                     await ctx.reply('❌ Banned')
@@ -1109,7 +1130,10 @@ bot.command('unbanchat', async(ctx) => {
         }
 
         if(ctx.chat.type == 'private') {
-            if(ctx.from.id == Number(config.ADMIN) || ctx.from.id == Number(config.ADMIN1) || ctx.from.id == Number(config.ADMIN2) || ctx.from.id == Number(config.ADMIN3) || ctx.from.id == Number(config.ADMIN4)){
+            let str = config.ADMIN;
+        let result = str.includes(ctx.from.id);
+
+        if(result == true){
                 await ctx.deleteMessage(ctx.message.message_id)
                 await saver.unBan(userId).then(async res => {
                     await ctx.reply('✅ Finished')
@@ -1427,25 +1451,37 @@ bot.command('stats',async(ctx)=>{
     
     await ctx.deleteMessage(ctx.message.message_id)
     const stats = await saver.getUser().then(async res=>{
-        if(ctx.from.id == Number(config.ADMIN) || ctx.from.id == Number(config.ADMIN1) || ctx.from.id == Number(config.ADMIN2) || ctx.from.id == Number(config.ADMIN3) || ctx.from.id == Number(config.ADMIN4)){
+        let str = config.ADMIN;
+        let result = str.includes(ctx.from.id);
+
+        if(result == true){
             await ctx.reply(`📊 Total users: <b>${res.length}</b>`,{parse_mode:'HTML'})
         }
         
     })
     const stats2 = await saver.getMedia().then(async res=>{
-        if(ctx.from.id == Number(config.ADMIN) || ctx.from.id == Number(config.ADMIN1) || ctx.from.id == Number(config.ADMIN2) || ctx.from.id == Number(config.ADMIN3) || ctx.from.id == Number(config.ADMIN4)){
+        let str = config.ADMIN;
+        let result = str.includes(ctx.from.id);
+
+        if(result == true){
             await ctx.reply(`📊 Total media: <b>${res.length}</b>`,{parse_mode:'HTML'})
         }
 
     })
     const stats3 = await saver.getBan().then(async res=>{
-        if(ctx.from.id == Number(config.ADMIN) || ctx.from.id == Number(config.ADMIN1) || ctx.from.id == Number(config.ADMIN2) || ctx.from.id == Number(config.ADMIN3) || ctx.from.id == Number(config.ADMIN4)){
+        let str = config.ADMIN;
+        let result = str.includes(ctx.from.id);
+
+        if(result == true){
             await ctx.reply(`📊 Total users violate: <b>${res.length}</b>`,{parse_mode:'HTML'})
         }
         
     })
     const stats4 = await saver.getGroup().then(async res=>{
-        if(ctx.from.id == Number(config.ADMIN) || ctx.from.id == Number(config.ADMIN1) || ctx.from.id == Number(config.ADMIN2) || ctx.from.id == Number(config.ADMIN3) || ctx.from.id == Number(config.ADMIN4)){
+        let str = config.ADMIN;
+        let result = str.includes(ctx.from.id);
+
+        if(result == true){
             await ctx.reply(`📊 Total registered groups: <b>${res.length}</b>`,{parse_mode:'HTML'})
         }
         
