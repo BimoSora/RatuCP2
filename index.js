@@ -1489,6 +1489,8 @@ bot.command('stats',async(ctx)=>{
     
 })
 
+bot.catch(e => console.error(e))
+
 //nginx config
 bot.launch({
     webhook:{
