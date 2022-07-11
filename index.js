@@ -68,6 +68,8 @@ function messagebotnoaddgroup(ctx){
     return `The bot has not yet entered the owner's channel/group.`;
 }
 
+bot.catch(e => console.error(e))
+
 //BOT START
 bot.start(async(ctx)=>{
 
@@ -1488,8 +1490,6 @@ bot.command('stats',async(ctx)=>{
     })
     
 })
-
-bot.catch(e => console.error(e))
 
 //nginx config
 bot.launch({
